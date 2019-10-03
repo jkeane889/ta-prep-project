@@ -24,7 +24,25 @@ app.get('/', (req, res) => {
 });
 
 app.post('/payment', (req, res) => {
-  db.addRow(req.body.user);
+
+  let name = req.body.user.firstname + req.body.user.lastname;
+  let email = req.body.user.email;
+  let password = req.body.user.password;
+  let address = req.body.user.address;
+  let phonenumber = req.body.user.phonenumber;
+  let creditcard = req.body.user.creditcard;
+  let expiration = req.body.user.expiration;
+  let cvv = req.body.user.cvv;
+  let billingzip = req.body.user.billingzip;
+
+  let insertion = `INSERT INTO users (name, email, password, address, phonenumber, creditcardnumber, expirationdate, cvv, billingcode) VALUES ('${name}', '${email}', '${password}', '${address}', '${phonenumber}', '${creditcard}', '${expiration}', '${cvv}', '${billingzip}');`
+  db.query(insertion, (err, result) => {
+    if (err) {
+      console.log(err)
+      return res.send(err);
+    }
+    res.redirect('/');
+  })
 })
 
 app.listen(port, function () {

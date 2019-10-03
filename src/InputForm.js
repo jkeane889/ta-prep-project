@@ -11,8 +11,10 @@ export default class InputForm extends React.Component {
             email: '',
             password: '',
             address: '',
+            phonenumber: '',
             creditcard: '',
             expiration: '',
+            cvv: '',
             billingzip: ''
         }
 
@@ -22,8 +24,10 @@ export default class InputForm extends React.Component {
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleAddress = this.handleAddress.bind(this);
+        this.handlePhoneNumber = this.handlePhoneNumber.bind(this);
         this.handleCreditCard = this.handleCreditCard.bind(this);
         this.handleExpiration = this.handleExpiration.bind(this);
+        this.handleCVV = this.handleCVV.bind(this);
         this.handleBillingCode = this.handleBillingCode.bind(this);
 
     }
@@ -36,12 +40,14 @@ export default class InputForm extends React.Component {
             email: this.state.email,
             password: this.state.password,
             address: this.state.address,
+            phonenumber: this.state.phonenumber,
             creditcard: this.state.creditcard,
             expiration: this.state.expiration,
-            billingzip: this.state.billingzip,
+            cvv: this.state.cvv,
+            billingzip: this.state.billingzip
         }
 
-        axios.post('/payment', {user})
+        axios.post('http://localhost:3000/payment', {user})
           .then(function (response) {
             console.log(response);
           })
@@ -72,6 +78,14 @@ export default class InputForm extends React.Component {
         this.setState({address: event.target.value});
     }
 
+    handlePhoneNumber(event) {
+        this.setState({phonenumber: event.target.value});
+    }
+
+    handleCVV(event) {
+        this.setState({cvv: event.target.value});
+    }
+
     handleCreditCard(event) {
         this.setState({creditcard: event.target.value});
     }
@@ -97,9 +111,10 @@ export default class InputForm extends React.Component {
                     Password: <input value={this.state.password} type="password" id="password" onChange={this.handlePassword} /><br />
             
                     Address: <textarea value={this.state.address} id="address" rows="4" cols="100" maxlength="500" onChange={this.handleAddress} ></textarea><br /><br />
-        
+                    Phone Number: <input value={this.state.phonenumber} id="phone" rows="4" cols="100" maxlength="500" onChange={this.handlePhoneNumber} ></input><br /><br />
                     Credit Card Number: <input value={this.state.creditcard} type="creditcard" id="creditcard" onChange={this.handleCreditCard} /><br />
                     Expiration Date: <input value={this.state.expiration} type="expirationdate" id="expdate" onChange={this.handleExpiration} /><br />
+                    CVV: <input value={this.state.cvv} type="expirationdate" id="cvv" onChange={this.handleCVV} /><br />
                     Billing Code Zip Code: <input value={this.state.billingzip} type="billingzip" id="zip" onChange={this.handleBillingCode} /><br />
         
                     <input type="submit" value="Submit" />
