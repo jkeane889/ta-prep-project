@@ -1,26 +1,21 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html", 
-  filename: "./index.html"
-});
+const SRC_DIR = path.join(__dirname, '/src');
+const DIST_DIR = path.join(__dirname, '/dist');
 
 module.exports = {
-  entry: "./src/index.js",
-  output: { // NEW
-    path: path.join(__dirname, 'dist'),
-    filename: "[name].js"
-  }, // NEW Ends
-  plugins: [htmlPlugin],
-  module: {
-    rules: [
+  entry: `${SRC_DIR}/index.js`,
+  output: {
+  filename: 'bundle.js',
+  path: DIST_DIR
+},
+  module : {
+    rules : [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        test : /\.js?/,
+        include : SRC_DIR,
+        loader : 'babel-loader',
       }
     ]
   }

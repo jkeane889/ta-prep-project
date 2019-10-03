@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class InputForm extends React.Component {
     constructor(props) {
@@ -20,8 +21,15 @@ export default class InputForm extends React.Component {
 
     completePurchase() {
         // function to send state data into database
+        // POST request to server
 
-
+        axios.post('/payment',
+            this.state
+        ).then((response) => {
+            console.log("Thanks for your payment!")
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     handleFirstName(event) {
@@ -58,7 +66,7 @@ export default class InputForm extends React.Component {
 
     render() {
         return (
-            <form action="form.aspx" method="get" autocomplete="on" onSubmit={()=> {this.completePurchase}}>
+            <form autocomplete="on" onSubmit={()=> {this.completePurchase}}>
                 <fieldset>
                     <legend>Form data:</legend>
           
@@ -68,11 +76,11 @@ export default class InputForm extends React.Component {
         
                     Password: <input value={this.state.password} type="password" id="password" placeholder="enter password" onChange={this.handlePassword} /><br />
             
-                    Address: <textarea value={this.state.address} id="Address" rows="4" cols="100" maxlength="500" placeholder="enter address" onChange={this.handleAddress} ></textarea><br /><br />
+                    Address: <textarea value={this.state.address} id="address" rows="4" cols="100" maxlength="500" placeholder="enter address" onChange={this.handleAddress} ></textarea><br /><br />
         
-                    Credit Card Number: <input value={this.state.creditcard} type="password" id="tpassword" placeholder="enter password" onChange={this.handleCreditCard} /><br />
-                    Expiration Date: <input value={this.state.expiration} type="password" id="tpassword" placeholder="enter password" onChange={this.handleExpiration} /><br />
-                    Billing Code Zip Code: <input value={this.state.billingzip} type="password" id="tpassword" placeholder="enter password" onChange={this.handleBillingCode} /><br />
+                    Credit Card Number: <input value={this.state.creditcard} type="creditcard" id="creditcard" placeholder="enter cardnumber" onChange={this.handleCreditCard} /><br />
+                    Expiration Date: <input value={this.state.expiration} type="expirationdate" id="expdate" placeholder="enter expiration" onChange={this.handleExpiration} /><br />
+                    Billing Code Zip Code: <input value={this.state.billingzip} type="billingzip" id="zip" placeholder="enter zipcode" onChange={this.handleBillingCode} /><br />
         
                     <input type="submit" value="Submit" />
                 <input type="reset" value="Reset Form" />
