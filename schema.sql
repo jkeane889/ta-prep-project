@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS customers;
+
 CREATE DATABASE customers;
 
 USE customers;
@@ -13,5 +15,5 @@ CREATE TABLE users (
     expirationdate varchar(255) NOT NULL,
     cvv varchar(255) NOT NULL,
     billingcode varchar(255) NOT NULL,
-    PRIMARY KEY id
-)
+    PRIMARY KEY ( id )
+);

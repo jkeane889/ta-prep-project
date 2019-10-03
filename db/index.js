@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host     : 'localhost',
   database : 'customers',
   user     : 'student', // change
-  password : 'student1', // change
+  password : 'student', // change
 });
 
 connection.connect((err) => {
@@ -12,20 +12,20 @@ connection.connect((err) => {
   console.log('database connected!');
 });
 
+// function addRow(data) {
+//   let insertQuery = 
+
+
+
+
+// }
+
+// firstname + lastname = name
 function addRow(data) {
-  let insertQuery = 
-
-
-
-
+  console.log(data)  
+  // connection.query(`INSERT INTO customers (name, email, password, address, phone, creditcard, expcredit, cvv, zip) VALUES (${}, ?, ?, ?, ?, ?, ?, ?, ?)`, (err, results, fields) => {
+  // if (error) throw error;
 }
-
-connection.query('INSERT INTO customer_data (name, email, password, address, phone, creditcard, expcredit, cvv, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (err, results, fields) => {
-  if (error) throw error;
-  
-
-
-})
 
 // Run this to check that you are connected to the database
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
@@ -33,4 +33,4 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   console.log('The solution is: ', results[0].solution);
 });
 
-module.exports = connection;
+module.exports = addRow;

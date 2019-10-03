@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path'); // NEW
-// const db = require('./db');
+const db = require('../db/index.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,8 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/payment', (req, res) => {
-  
-  console.log(req.body)
+  db.addRow(req.body.user);
 })
 
 app.listen(port, function () {
