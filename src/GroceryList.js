@@ -1,12 +1,13 @@
 import React from 'react';
 
 const GroceryList = props => {
+    console.log(props.groceryList)
     return (
         <div>
             <ul>
-            {props.groceryList.map((item, index) => (
-                <li key={index}>{item}</li>
-            ))}
+                {props.groceryList.map(item => (
+                    <li key={item}>{item}</li>
+                ))}
             </ul>
         </div>
     )

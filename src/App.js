@@ -8,22 +8,34 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            groceryList: ['chips & guac', 'carrots', 'black truffle pizza for dinner', 'beer to celebrate the juniors passing the TA!'],
+            groceryList: [],
             groceryItem: ''
         }
 
         this.addItem = this.addItem.bind(this);
         this.updateGroceryItem = this.updateGroceryItem.bind(this);
-    }
-
-    // added a comment
+    };
 
     // Initialize GET request to retrieve grocery list items from database
+    componentDidMount() {
+        axios.get('/groceries')
+        .then(function (response) {
+            // update state of grocery list items from database
+            console.log("This is the server response: ", response)
+            this.setState({
+                groceryList: response.body.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
     // Initialize POST request to ADD grocery list items from database
+    
 
     // Initialize POST request to ADD grocery list items from database
-
+    com
     addItem() {
         this.setState({
             groceryList: [...this.state.groceryList, this.state.groceryItem],
@@ -41,7 +53,7 @@ export default class App extends React.Component {
         return (
             <div>
                 <h1>Rob's Grocery List</h1>
-                <GroceryInput updateGroceryItem={this.updateGroceryItem} addItem={this.addItem} currentItem={this.state.groceryItem} />
+                <GroceryInput currentItem={this.state.groceryItem} updateGroceryItem={this.updateGroceryItem} addItem={this.addItem} />
                 <GroceryList groceryList={this.state.groceryList} />
             </div>
     )};
