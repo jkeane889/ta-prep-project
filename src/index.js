@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InputForm from "./InputForm"
+import App from "./App"
 
-const Index = () => {
-  return <div>Welcome to React!</div>;
-};
-
-ReactDOM.render(<InputForm />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
